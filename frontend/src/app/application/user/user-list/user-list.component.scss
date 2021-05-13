@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+.role {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+
+  mat-icon {
+    flex: 0;
+    color: #5e5d65;
+    max-width: 30px;
+  }
+
+  span {
+    flex: 1;
+    padding-top: 3px;
+    height: 100%;
+  }
+}
+

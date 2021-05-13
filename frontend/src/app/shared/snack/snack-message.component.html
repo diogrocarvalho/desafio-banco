@@ -1,0 +1,13 @@
+<div class="snack-message">
+  <div class="icon" *ngIf="data.icon" [ngClass]="{'error': data.error}">
+    <mat-icon>{{ data.icon }}</mat-icon>
+  </div>
+
+  <div class="message">
+    {{ data.message }}
+  </div>
+
+  <div class="actions" *ngIf="data.action">
+    <button mat-button (click)="dismiss()">{{ data.action }}</button>
+  </div>
+</div>

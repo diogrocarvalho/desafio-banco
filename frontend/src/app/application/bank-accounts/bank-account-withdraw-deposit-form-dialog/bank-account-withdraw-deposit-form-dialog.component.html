@@ -1,0 +1,33 @@
+<ng-container>
+  <div class="flex">
+    <span class="flex-1">
+      <h2 *ngIf="isWithdraw">Saque</h2>
+      <h2 *ngIf="!isWithdraw">Depósito</h2>
+    </span>
+    <span class="flex-0">
+      <button mat-icon-button [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
+    </span>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form">
+    <app-bank-account-resume [bankAccount]="bankAccount"></app-bank-account-resume>
+
+    <form class="flex column" *ngIf="bankAccount" autocomplete="off">
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput
+               currencyMask
+               required
+               name="balance"
+               [formControl]="amountFormControl"
+               [errorStateMatcher]="matcher">
+      </mat-form-field>
+
+      <div class="actions justify-end">
+        <button mat-flat-button color="primary" (click)="save()" [disabled]="!validateForm()">Salvar</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

@@ -1,0 +1,21 @@
+@import 'src/styles';
+
+mat-nav-list {
+  a {
+    &.mat-list-item {
+      min-width: 350px;
+
+      &.route-active {
+        &, &:focus, &:hover {
+          background-color: map-get($app-primary, 600);
+          color: map-get(map-get($app-primary, contrast), 600);
+        }
+      }
+
+      span {
+        padding-left: 8px;
+      }
+
+    }
+  }
+}

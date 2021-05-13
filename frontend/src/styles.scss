@@ -1,0 +1,224 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/fonts/material_icons';
+@import 'assets/fonts/roboto_fonts';
+
+@import '~@angular/material/theming';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@include mat-core();
+
+$app-primary: mat-palette($mat-deep-purple, 900);
+$app-accent: mat-palette($mat-amber, A200, A100, A400);
+$app-warn: mat-palette($mat-red);
+$app-theme: mat-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  )
+));
+@include angular-material-theme($app-theme);
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.flex {
+  display: flex;
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.w-100 {
+    width: 100%;
+  }
+
+  & .flex-0 {
+    @extend .flex;
+    flex: 0;
+  }
+
+  & .flex-1 {
+    @extend .flex;
+    flex: 1;
+  }
+
+  & .flex-2 {
+    @extend .flex;
+    flex: 2;
+  }
+
+  & .flex-2 {
+    @extend .flex;
+    flex: 3;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.container {
+  padding: 30px;
+  box-sizing: border-box;
+
+  @media (max-width: 1000px) {
+    padding: 0;
+  }
+
+  button.padding-right {
+    margin-right: 4px;
+  }
+
+  .form {
+    .form-panel {
+      max-width: 500px;
+      padding: 40px;
+    };
+
+    .actions {
+      text-align: end;
+    }
+
+    mat-form-field  {
+      padding-bottom: 18px;
+    }
+
+    mat-slide-toggle {
+      padding-bottom: 18px;
+    }
+  }
+
+  table {
+    width: 100%;
+
+    th.column-60 {
+      width: 60px;
+    }
+
+    th.column-100 {
+      width: 100px;
+    }
+
+    th.column-150 {
+      width: 150px;
+    }
+
+    th.column-200 {
+      width: 200px;
+    }
+
+    th.column-250 {
+      width: 250px;
+    }
+
+    th.column-300 {
+      width: 300px;
+    }
+
+    .no-data-row {
+      text-align: center;
+    }
+  }
+
+  .search-field {
+    width: 20rem;
+    &.self-align-center{
+      margin-top: 12px;
+    }
+  }
+
+  .field-20 {
+    width: 20rem;
+  }
+
+  .padding-right {
+    padding-right: 16px;
+  }
+
+  .progress {
+    height: 4px;
+  }
+
+  .import {
+    height: 100%;
+
+    .uploader {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+
+      .errors {
+        margin: 20px;
+        color: #db202f;
+      }
+    }
+
+
+    .upload-status {
+      text-align: left;
+
+      > div {
+        padding: 10px 0;
+      }
+    }
+  }
+
+  mat-toolbar-row {
+    .mat-form-field {
+      font-size: 0.7em;
+    }
+  }
+
+}
+form {
+  mat-form-field {
+    margin-bottom: 10px;
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+}
+.page-title {
+  padding: 0 0 25px 8px;
+  box-sizing: border-box;
+
+  h1 {
+    font-weight: bold;
+  }
+}
+
+.main {
+  height: 100%;
+
+  mat-toolbar {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .main-container {
+    overflow: auto;
+
+    mat-drawer-container {
+      height: 100%;
+      background-color: transparent;
+
+      mat-drawer-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: 100%;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.justify-end {
+  text-align: end;
+}

@@ -1,0 +1,24 @@
+<div class="background">
+  <div class="content">
+    <mat-card>
+      <mat-card-content>
+        <form class="flex column">
+          <h1>Fazer Login</h1>
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput #usernameField name="username" [(ngModel)]="credential.username" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput name="password" type="password" [(ngModel)]="credential.password">
+          </mat-form-field>
+
+          <p class="error">{{ error }}</p>
+
+          <button mat-flat-button color="primary" (click)="authenticate()">ENTRAR</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.resume-holder {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    .label {
+      font-weight: bold;
+    }
+  }
+}

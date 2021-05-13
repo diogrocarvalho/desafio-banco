@@ -1,0 +1,31 @@
+<ng-template [ngIf]="!selectedItem">
+  <mat-nav-list role="navigation" *ngFor="let item of items">
+    <a mat-list-item [routerLink]="item.routerLink"
+      [routerLinkActive]="item.routerLinkActive"
+      [routerLinkActiveOptions]="item.routerLinkActiveOptions"
+      (click)="selectItem(item, item.closeDrawer)">
+      <mat-icon matPrefix>{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+</ng-template>
+
+<ng-template [ngIf]="selectedItem && selectedItem.items && selectedItem.items.length > 0">
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>{{ selectedItem.label }}</span>
+  </mat-toolbar>
+
+  <mat-nav-list role="navigation" *ngFor="let item of selectedItem.items">
+    <a mat-list-item [routerLink]="item.routerLink"
+      [routerLinkActive]="item.routerLinkActive"
+      [routerLinkActiveOptions]="item.routerLinkActiveOptions"
+      (click)="selectItem(item, item.closeDrawer)">
+      <mat-icon matPrefix>{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+</ng-template>
+
