@@ -51,6 +51,10 @@
         <button mat-flat-button color="primary" (click)="save()" [disabled]="!validateForm()">Salvar</button>
       </div>
     </form>
-    <div *ngIf="bankAccountsOpts.length <= 1">É preciso mais de uma conta para continuar. Cadastre uma conta para continuar.</div>
+    <div *ngIf="bankAccountsOpts.length <= 1" style="padding: 15px">
+      <span>É preciso mais de uma conta para efetuar uma transferência.</span>
+      <br>
+      <span>Cadastre uma conta para continuar.</span>
+    </div>
   </div>
 </ng-container>
