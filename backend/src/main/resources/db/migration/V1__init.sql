@@ -20,7 +20,7 @@ create table bank_accounts(
 
 INSERT INTO users(
 	enabled, name, password, username, cpf)
-	VALUES (true, 'Admin', '$2a$10$8xRgONqHa9Zp0UqmaYqARutHWnHFTxFXFmeQs.rx/IARmn08aF2W2', 'admin@test.com', '07425094436');
+	VALUES (true, 'Admin', '$2a$10$8xRgONqHa9Zp0UqmaYqARutHWnHFTxFXFmeQs.rx/IARmn08aF2W2', 'admin@test.com', '21045387002');
 
 INSERT INTO bank_accounts(account_number, balance, user_id) VALUES ('123456', 50.0, 1) ;
 
