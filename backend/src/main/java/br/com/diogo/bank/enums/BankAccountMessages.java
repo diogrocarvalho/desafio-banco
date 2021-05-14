@@ -13,7 +13,7 @@ public enum BankAccountMessages {
     INSUFFICIENT_FUNDS("Saldo insuficiente para a operação."),
 
     SUCCESSFUL_DEPOSIT("Depósito realizado com sucesso!"),
-    SUCCESSFUL_WITHDRAW("Saque realizado com sucesso"),
+    SUCCESSFUL_WITHDRAW("Saque realizado com sucesso!"),
     SUCCESSFUL_TRANSFER("Transferência realizada com sucesso!");
 
     public final String label;

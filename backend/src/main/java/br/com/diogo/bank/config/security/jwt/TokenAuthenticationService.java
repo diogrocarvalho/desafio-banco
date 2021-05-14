@@ -22,7 +22,6 @@ public class TokenAuthenticationService {
 	private String privateKey;
 	
 	public TokenAuthenticationService(Long expirationTime, String privateKey) {
-		super();
 		this.expirationTime = expirationTime;
 		this.privateKey = privateKey;
 	}
