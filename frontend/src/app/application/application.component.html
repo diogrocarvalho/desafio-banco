@@ -1,0 +1,41 @@
+<div class="flex column main">
+  <div class="flex-0">
+    <mat-toolbar color="primary" class="mat-elevation-z6 flex main-toolbar" role="heading">
+      <span class="flex-0">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+      </span>
+
+      <span class="flex-0">
+      </span>
+      <span class="flex-1"></span>
+      <span class="flex-0">
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>person</mat-icon>
+        </button>
+      </span>
+    </mat-toolbar>
+  </div>
+
+  <div class="flex column flex-1 main-container">
+    <mat-drawer-container class="mat-elevation-z0">
+      <mat-drawer #drawer [mode]="'over'">
+        <app-menu [drawer]="drawer" [menu]="MENU"></app-menu>
+      </mat-drawer>
+
+      <mat-drawer-container>
+        <router-outlet></router-outlet>
+      </mat-drawer-container>
+    </mat-drawer-container>
+  </div>
+</div>
+
+<mat-menu #appMenu="matMenu" xPosition="before">
+  <ng-template matMenuContent>
+    <a mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sair</span>
+    </a>
+  </ng-template>
+</mat-menu>

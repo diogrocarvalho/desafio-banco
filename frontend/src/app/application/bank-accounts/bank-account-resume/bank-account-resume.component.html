@@ -1,0 +1,14 @@
+<div class="resume-holder">
+    <span class="row">
+      <span class="label">Correntista</span><span>{{bankAccount.username}}</span>
+    </span>
+    <span class="row">
+      <span class="label">CPF </span><span>{{bankAccount.cpf | mask: 'CPF_CNPJ'}}</span>
+    </span>
+    <span class="row">
+      <span class="label">Conta</span><span>{{bankAccount.accountNumber}}</span>
+    </span>
+    <span class="row" *ngIf="!isTransfer">
+      <span class="label">Saldo</span><span>{{bankAccount.balance | currency : 'BRL'}}</span>
+    </span>
+</div>

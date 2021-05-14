@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="form mat-elevation-z6">
+    <mat-toolbar>
+      <mat-toolbar-row class="flex row">
+        <span class="flex-0">
+          <a mat-icon-button [routerLink]="['/users']">
+            <mat-icon>arrow_back</mat-icon>
+          </a>
+        </span>
+
+        <span class="flex-1">Editar Usuário</span>
+
+        <span class="flex-0">
+          <a mat-flat-button color="primary" routerLink="change-password">
+            <span>Alterar Senha</span>
+          </a>
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="form-panel">
+      <app-user-form [user]="user" [includePassword]="false" (save)="update($event)"></app-user-form>
+    </div>
+  </div>
+</div>

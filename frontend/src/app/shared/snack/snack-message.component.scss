@@ -1,0 +1,39 @@
+@import '../../../styles';
+
+.snack-message {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .icon {
+    display: flex;
+    flex: 0;
+    padding-right: 6px;
+    align-items: center;
+
+    &.error {
+      color: map-get($mat-red, 800);
+    }
+  }
+
+  .message {
+    flex: 1;
+  }
+
+  .actions {
+    text-align: end;
+    flex: 0;
+  }
+}
+
+.mat-snack-bar-container {
+  background-color: map-get($mat-grey, 300);
+  color: map-get(map-get($mat-grey, contrast), 300);
+
+
+  button {
+    color: map-get(map-get($mat-grey, contrast), 300);
+  }
+
+}

@@ -1,0 +1,20 @@
+<ng-container>
+  <div class="flex">
+    <span class="flex-1">
+      <h2 *ngIf="!editMode">Cadastrar Conta Bancária</h2>
+      <h2 *ngIf="editMode">Editar Conta Bancária</h2>
+    </span>
+    <span class="flex-0">
+      <button mat-icon-button [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
+    </span>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form">
+    <app-bank-account-form [bankAccount]="bankAccount"
+                   (save)="save($event)"
+                   [dialog]="true">
+    </app-bank-account-form>
+  </div>
+</ng-container>

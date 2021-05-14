@@ -1,0 +1,43 @@
+<form class="flex column" *ngIf="bankAccount" autocomplete="off">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput name="name"
+           required
+           [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+
+    <mat-error *ngIf="nameFormControl.hasError('required')
+        || nameFormControl.hasError('pattern')">
+      Nome é obrigatório.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Número de conta</mat-label>
+    <input matInput
+           name="accountNumber"
+           [formControl]="accountNumberFormControl">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>CPF</mat-label>
+    <input matInput
+           name="cpf"
+           mask="CPF_CNPJ"
+           [formControl]="cpfFormControl"
+           [errorStateMatcher]="matcher">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Saldo</mat-label>
+    <input matInput
+           currencyMask
+           required
+           name="balance"
+           [formControl]="balanceFormControl"
+           [errorStateMatcher]="matcher">
+  </mat-form-field>
+
+  <div class="actions justify-end">
+    <button mat-flat-button color="primary" (click)="onSave()" [disabled]="!validateForm()">Salvar</button>
+  </div>
+</form>

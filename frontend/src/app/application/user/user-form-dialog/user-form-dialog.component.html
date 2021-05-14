@@ -1,0 +1,68 @@
+<ng-container *ngIf="!changePasswordMode">
+  <div class="flex">
+    <span class="flex-1">
+      <h2 *ngIf="!editMode">Cadastrar Usuário</h2>
+      <h2 *ngIf="editMode">Editar Usuário</h2>
+    </span>
+    <span class="flex-0">
+      <button mat-icon-button [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
+    </span>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form">
+    <app-user-form [user]="user"
+                   (save)="save($event)"
+                   [dialog]="true"
+                   [includePassword]="!editMode"
+                   (changePassword)="changePassword()">
+    </app-user-form>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="changePasswordMode">
+  <div class="flex">
+    <span class="flex-1">
+      <h2>Alterar Senha</h2>
+    </span>
+    <span class="flex-0">
+      <button mat-icon-button [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
+    </span>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form">
+
+    <form class="flex column" *ngIf="user">
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput name="password" [(ngModel)]="password" type="password" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Repita a senha</mat-label>
+        <mat-icon matSuffix *ngIf="correctPassword()">check</mat-icon>
+        <mat-icon matSuffix *ngIf="!correctPassword()">block</mat-icon>
+        <input matInput name="confirm-password" [(ngModel)]="confirmPassword" type="password">
+      </mat-form-field>
+    </form>
+
+    <mat-dialog-actions>
+      <div class="flex full-width">
+        <span class="flex-0">
+          <button [mat-dialog-close]="true" cdkFocusInitial mat-button>CANCELAR</button>
+
+          <button mat-flat-button color="primary"
+                  (click)="savePassword()"
+                  [disabled]="!correctPassword()">SALVAR</button>
+        </span>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</ng-container>
+
+
+
+

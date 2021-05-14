@@ -1,0 +1,76 @@
+<form class="flex column" *ngIf="user" autocomplete="off">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput name="name" [(ngModel)]="user.name" required
+           [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+
+    <mat-error *ngIf="nameFormControl.hasError('required')
+        || nameFormControl.hasError('pattern')">
+      Nome é obrigatório.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>E-mail</mat-label>
+    <input matInput
+           name="username"
+           type="email"
+           required
+           [(ngModel)]="user.username"
+           [formControl]="usernameFormControl"
+           [errorStateMatcher]="matcher">
+
+    <mat-error *ngIf="usernameFormControl.hasError('email')
+        && !usernameFormControl.hasError('required')">
+      Digite um e-mail válido.
+    </mat-error>
+
+    <mat-error *ngIf="usernameFormControl.hasError('required')">
+      E-mail é obrigatório.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="includePassword">
+    <mat-label>Senha</mat-label>
+    <input matInput name="password" [(ngModel)]="password" type="password" required>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="includePassword">
+    <mat-label>Repita a senha</mat-label>
+    <mat-icon matSuffix *ngIf="correctPassword()">check</mat-icon>
+    <mat-icon matSuffix *ngIf="!correctPassword()">block</mat-icon>
+    <input matInput name="confirm-password" [(ngModel)]="confirmPassword" type="password">
+  </mat-form-field>
+
+  <div class="actions justify-end" *ngIf="!dialog">
+    <button mat-flat-button color="primary" (click)="onSave()" [disabled]="!validateForm()">Salvar</button>
+  </div>
+</form>
+
+<mat-dialog-actions *ngIf="dialog">
+  <div class="flex full-width">
+    <span class="flex-1">
+      <button mat-raised-button color="accent"
+         (click)="onChangePassword()"
+         *ngIf="!includePassword">
+        <span>ALTERAR SENHA</span>
+      </button>
+
+      <button [mat-dialog-close]="true" cdkFocusInitial mat-raised-button>CANCELAR</button>
+
+      <button mat-flat-button color="primary"
+              (click)="onSave()"
+              [disabled]="!validateForm()"
+              *ngIf="includePassword">CADASTRAR</button>
+
+      <button mat-flat-button color="primary"
+              (click)="onSave()"
+              [disabled]="!validateForm()"
+              *ngIf="!includePassword">SALVAR</button>
+
+    </span>
+    <span class="flex-0">
+
+    </span>
+  </div>
+</mat-dialog-actions>
