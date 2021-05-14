@@ -87,4 +87,8 @@ public class UserService {
     public User getUserByCpf(String cpf) {
         return this.userRepository.findByCpf(cpf);
     }
+
+    public void delete(User user) {
+        this.userRepository.delete(user);
+    }
 }

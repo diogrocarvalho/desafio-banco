@@ -51,7 +51,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  .cors()
 		    .and()
 		  .sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+		  .authorizeRequests()
+		    .antMatchers(HttpMethod.POST, "/login").permitAll()
+		    .antMatchers(HttpMethod.GET, "/h2/*").permitAll()
+		    .antMatchers(HttpMethod.POST, "/h2/*").permitAll()
+		    .antMatchers(HttpMethod.GET, "/bank-accounts*").permitAll()
+		    .antMatchers(HttpMethod.POST, "/bank-accounts**").permitAll()
+		    .antMatchers(HttpMethod.PATCH, "/bank-accounts/**").permitAll()
+		    .antMatchers(HttpMethod.PUT, "/bank-accounts/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/users").permitAll()
+			.antMatchers(HttpMethod.GET, "/users").permitAll()
+		    .anyRequest().authenticated()
+		    .and()
+			.addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), tokenAuthenticationService()),
+			        UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(new JWTAuthenticationFilter(this.customUserDetailsService, tokenAuthenticationService()),
+			        UsernamePasswordAuthenticationFilter.class);
 	}
 	
     @Bean

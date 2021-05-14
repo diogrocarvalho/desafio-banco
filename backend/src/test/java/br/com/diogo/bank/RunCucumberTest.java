@@ -7,6 +7,7 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 
 @AutoConfigureMockMvc
@@ -16,6 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "classpath:br/com/diogo/bank/features",
-        plugin = {"pretty"})
+        plugin = {"pretty", "html:target/cucumber-reports"},
+        monochrome = true
+)
+@PropertySource("classpath:application-test.properties")
 public class RunCucumberTest {
 }

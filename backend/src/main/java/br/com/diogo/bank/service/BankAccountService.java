@@ -81,6 +81,10 @@ public class BankAccountService {
         return this.bankAccountRepository.findByAccountNumberContains(pageable, s);
     }
 
+    public BankAccount findByAccountNumber( String accountNumber) {
+        return this.bankAccountRepository.findByAccountNumber(accountNumber);
+    }
+
     public Optional<BankAccount> findById(Long id) {
         return this.bankAccountRepository.findById(id);
     }
@@ -106,11 +110,12 @@ public class BankAccountService {
     }
 
     public void transfer(BankAccount outgoingBankAccount, BankAccount incomingBankAccount, Double amount) throws BankAccountException {
-        if(amount > this.withdrawLimit) {
-            throw new BankAccountException(BankAccountMessages.WITHDRAW_LIMIT_REACHED);
-        }
         if(amount > outgoingBankAccount.getBalance()) {
             throw new BankAccountException(BankAccountMessages.INSUFFICIENT_FUNDS);
+        }
+
+        if(amount > this.withdrawLimit) {
+            throw new BankAccountException(BankAccountMessages.WITHDRAW_LIMIT_REACHED);
         }
 
         outgoingBankAccount.setBalance(outgoingBankAccount.getBalance() - amount);
@@ -119,4 +124,9 @@ public class BankAccountService {
         this.bankAccountRepository.save(outgoingBankAccount);
         this.bankAccountRepository.save(incomingBankAccount);
     }
+
+    public void delete(BankAccount bankAccount) {
+        this.bankAccountRepository.delete(bankAccount);
+    }
+
 }

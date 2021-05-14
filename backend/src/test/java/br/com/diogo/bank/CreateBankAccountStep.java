@@ -1,9 +1,11 @@
 package br.com.diogo.bank;
 
 import br.com.diogo.bank.domain.BankAccount;
+import br.com.diogo.bank.repository.BankAccountRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Então;
@@ -30,13 +32,16 @@ public class CreateBankAccountStep {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private BankAccountRepository bankAccountRepository;
+
     private JSONObject payload;
     private JSONObject successResponse;
-
     private String errorMessage;
 
+
     @Dado("que seja solicitada a criação de uma nova conta com os seguintes valores")
-    public void getBankAccountValues(DataTable table) throws JSONException {
+    public void queSejaSolicitadaACriacaoDeUmaNovaContaComOsSeguintesValores(DataTable table) throws Exception {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
 
         for (Map<String, String> columns : rows) {
@@ -48,7 +53,7 @@ public class CreateBankAccountStep {
     }
 
     @Quando("for enviada a solicitação de criação de nova conta")
-    public void requestCreationOfANewBankAccount() throws Exception {
+    public void forEnviadaASolicitacaoDeCriacaoDeNovaConta() throws Exception {
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/bank-accounts")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -68,12 +73,12 @@ public class CreateBankAccountStep {
     }
 
     @Então("deverá ser apresentada a seguinte mensagem de erro {string}")
-    public void shouldShowErrorMessage(String message) {
+    public void deveraSerApresentadaASeguinteMensagemDeErro(String message) {
         assertEquals(message, this.errorMessage);
     }
 
     @Então("deverá ser retornado o número da conta criada")
-    public void shouldReturnAnAccountNumber() throws JSONException, JsonProcessingException {
+    public void deveraSerRetornadoONumeroDaContaCriada() throws JSONException, JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         BankAccount bankAccount = objectMapper
                 .readValue(this.successResponse.get("bankAccount").toString(), BankAccount.class);
@@ -82,7 +87,12 @@ public class CreateBankAccountStep {
     }
 
     @E("deverá ser apresentada a seguinte mensagem {string}")
-    public void shouldShowSuccessMessage(String message) throws JSONException {
+    public void deveraSerApresentadaASeguinteMensagem(String message) throws JSONException {
         assertEquals(message, this.successResponse.get("message"));
+    }
+
+    @After
+    public void clearAll() {
+        this.bankAccountRepository.deleteAll();
     }
 }
